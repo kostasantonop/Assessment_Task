@@ -38,7 +38,7 @@ class APIRouter {
     func request<T: Codable>( urlString: String, params: [String: String]? = nil, method: APIRequestType = .get) -> Promise<T> {
         return Promise { resolver in
             guard var urlComponents = URLComponents(string: urlString) else {
-                resolver.reject(NSError(domain: "Invalid URL", code: 0))
+                rejectAndLog(resolver, error: NSError(domain: "Invalid URL", code: 0))
                 return
             }
 
@@ -78,4 +78,13 @@ class APIRouter {
             }.resume()
         }
     }
+}
+
+func rejectAndLog<T>(_ resolver: Resolver<T>, error: Error) {
+    if let error = error as NSError? {
+        print("Error: \(error.domain) with error code: \(error.code)")
+    } else {
+        print(error)
+    }
+    resolver.reject(error)
 }
