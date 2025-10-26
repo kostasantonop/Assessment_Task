@@ -10,6 +10,7 @@ import Foundation
 public final class LoginModel: ObservableObject {
     
     @Published public var state = LoginState()
+    public var store = LoginStore()
     var externalData: LoginModelExternalData?
     
     public init(externalData: LoginModelExternalData?) {

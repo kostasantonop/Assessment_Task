@@ -14,6 +14,12 @@ public struct LoginState {
     public init() {}
 }
 
+public struct LoginStore {
+    //TODO: Save in App instead of temporary saving
+    public var token: String?
+    public var tokenType: String?
+}
+
 // sourcery: AutoMockable
 public protocol EverydayInvestIntroModelStatePotocol {
     var state: LoginState { get }

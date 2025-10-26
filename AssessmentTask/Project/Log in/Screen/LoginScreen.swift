@@ -17,6 +17,9 @@ struct LoginScreen: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+                .onAppear {
+                    container.intent.getAuthToken()
+                }
         }
         .padding()
     }
