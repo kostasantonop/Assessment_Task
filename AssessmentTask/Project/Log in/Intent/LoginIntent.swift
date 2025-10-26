@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 public class LoginIntent {
     
@@ -18,4 +19,22 @@ public class LoginIntent {
     }
 }
 
-extension LoginIntent: LoginIntentProtocol {}
+extension LoginIntent: LoginIntentProtocol {
+    
+    public func getAuthToken() {
+        service?.getAuthToken().done { response in
+            APIRouter.shared.defaultHeaders["Auth"] = "\(response.tokenType) \(response.token)"
+            print(APIRouter.shared.defaultHeaders)
+        }.catch { error in
+            self.log(error)
+        }
+    }
+    
+    private func log(_ error: Error) {
+        if let error = error as NSError? {
+            print("Error: \(error.domain) with error code: \(error.code)")
+        } else {
+            print(error)
+        }
+    }
+}

@@ -59,6 +59,7 @@ class APIRouter {
             }
 
             URLSession.shared.dataTask(with: request) { data, response, error in
+                
                 if let error = error {
                     resolver.reject(error)
                     return
@@ -71,6 +72,7 @@ class APIRouter {
 
                 do {
                     let decoded = try JSONDecoder().decode(T.self, from: data)
+                    print(decoded)
                     resolver.fulfill(decoded)
                 } catch {
                     resolver.reject(error)

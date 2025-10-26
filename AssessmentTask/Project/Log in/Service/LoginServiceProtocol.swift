@@ -6,5 +6,8 @@
 //
 
 import Foundation
+import PromiseKit
 
-public protocol LoginServiceProtocol {}
+public protocol LoginServiceProtocol {
+    func getAuthToken() -> Promise<APIResponseToken>
+}

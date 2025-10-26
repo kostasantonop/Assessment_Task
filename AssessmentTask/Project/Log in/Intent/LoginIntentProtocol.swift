@@ -7,4 +7,5 @@
 
 import Foundation
 
-public protocol LoginIntentProtocol {}
+public protocol LoginIntentProtocol {
+    func getAuthToken()

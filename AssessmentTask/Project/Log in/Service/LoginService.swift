@@ -6,5 +6,11 @@
 //
 
 import Foundation
+import PromiseKit
 
-public struct LoginService: LoginServiceProtocol {}
+class LoginService: LoginServiceProtocol {
+    
+    func getAuthToken() -> Promise<APIResponseToken> {
+        APIRouter.shared.request(urlString: UrlFactory.token.urlString)
+    }
+}
