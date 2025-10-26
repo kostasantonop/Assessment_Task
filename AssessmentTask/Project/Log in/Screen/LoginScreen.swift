@@ -1,13 +1,16 @@
 //
-//  ContentView.swift
+//  LoginScreen.swift
 //  AssessmentTask
 //
 //  Created by k.a.antonopoulos on 26/10/25.
 //
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct LoginScreen: View {
+    @ObservedObject var container: Container<LoginIntent, LoginModel>
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -17,8 +20,4 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
