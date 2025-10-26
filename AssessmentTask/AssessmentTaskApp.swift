@@ -11,7 +11,9 @@ import SwiftUI
 struct AssessmentTaskApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let content = LoginModelExternalContent()
+            let data = LoginModelExternalData(externalContent: content)
+            LoginScreenFactory(data: data).make()
         }
     }
 }
