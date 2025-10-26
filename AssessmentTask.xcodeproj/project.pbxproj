@@ -24,8 +24,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7BA355CF2EAE188D00A922FC /* AssessmentTask */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = AssessmentTask;
 			sourceTree = "<group>";
 		};
