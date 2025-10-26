@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APIResponseToken: Codable {
-    let access_token: String
-    let token_type: String
+public struct APIResponseToken: Codable {
+    public let access_token: String
+    public let token_type: String
 }
