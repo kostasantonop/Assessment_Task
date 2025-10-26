@@ -9,3 +9,4 @@ import Foundation
 
 public protocol LoginIntentProtocol {
     func getAuthToken()
+}

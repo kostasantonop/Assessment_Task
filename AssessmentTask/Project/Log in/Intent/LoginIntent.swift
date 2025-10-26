@@ -23,7 +23,7 @@ extension LoginIntent: LoginIntentProtocol {
     
     public func getAuthToken() {
         service?.getAuthToken().done { response in
-            APIRouter.shared.defaultHeaders["Auth"] = "\(response.tokenType) \(response.token)"
+            APIRouter.shared.defaultHeaders["Authorization"] = "\(response.token_type) \(response.access_token)"
             print(APIRouter.shared.defaultHeaders)
         }.catch { error in
             self.log(error)
