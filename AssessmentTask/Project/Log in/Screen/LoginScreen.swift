@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LoginScreen: View {
     @ObservedObject var container: Container<LoginIntentProtocol, LoginModelStateProtocol>
+    @State var buttonTapped: Bool = false
     
     var body: some View {
         contentView
@@ -21,14 +22,30 @@ struct LoginScreen: View {
         VStack(alignment: .center, spacing: 32) {
             Text("AppTitle".localized)
                 .font(.title)
-                .onTapGesture { container.intent.getGamesAndHeadlines() }
                 .onAppear { container.intent.getAuthToken() }
+            buttonView
             headlineView
                 .padding(.leading, 20)
             gamesView
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
                 .padding(.horizontal, 20)
+        }
+    }
+    
+    @ViewBuilder
+    private var buttonView: some View {
+        if !buttonTapped {
+            Button(action: {
+                buttonTapped = true
+                container.intent.getGamesAndHeadlines()
+            }, label: {
+                Text("CTA_Button".localized)
+                    .padding(48)
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            })
         }
     }
     
