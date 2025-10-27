@@ -14,6 +14,7 @@ struct LoginScreen: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
+                .onTapGesture { container.intent.getGames() }
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
