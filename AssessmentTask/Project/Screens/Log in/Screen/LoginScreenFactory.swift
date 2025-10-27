@@ -9,14 +9,8 @@ import Foundation
 
 class LoginScreenFactory {
     
-    private let data: LoginModelExternalData?
-    
-    init(data: LoginModelExternalData?) {
-        self.data = data
-    }
-
     func make() -> LoginScreen {
-        let model = LoginModel(externalData: self.data)
+        let model = LoginModel()
         let intent = LoginIntent(model: model, service: LoginService())
         let container = Container(intent: intent as LoginIntentProtocol, model: model as LoginModelStateProtocol, modelChangePublisher: model.objectWillChange)
         let view = LoginScreen(container: container)

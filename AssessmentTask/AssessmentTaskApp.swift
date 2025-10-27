@@ -12,9 +12,7 @@ struct AssessmentTaskApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                let content = LoginModelExternalContent()
-                let data = LoginModelExternalData(externalContent: content)
-                LoginScreenFactory(data: data).make()
+                LoginScreenFactory().make()
                 LoaderView()
             }
         }

@@ -11,11 +11,8 @@ public final class LoginModel: ObservableObject, LoginModelStateProtocol {
     
     @Published public var state: LoginState = LoginState()
     public var store = LoginStore()
-    var externalData: LoginModelExternalData?
     
-    public init(externalData: LoginModelExternalData?) {
-        self.externalData = externalData
-    }
+    public init() {}
 }
 
 extension LoginModel: LoginModelProtocol {
