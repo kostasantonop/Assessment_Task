@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B31B7822EAE1C2F006689CE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B31B7812EAE1C1F006689CE /* .swiftlint.yml */; };
 		7B31B7AF2EAE2916006689CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B31B7AE2EAE2916006689CE /* Assets.xcassets */; };
+		7B31B8832EAF7C15006689CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B31B8812EAF7C15006689CE /* Localizable.strings */; };
 		B3B5F40BBB52A5EB10BBE72F /* Pods_AssessmentTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0915D6B81A036D5321E1D1CD /* Pods_AssessmentTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -18,6 +19,7 @@
 		614591D57F73765F982D91CA /* Pods-AssessmentTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssessmentTask.release.xcconfig"; path = "Target Support Files/Pods-AssessmentTask/Pods-AssessmentTask.release.xcconfig"; sourceTree = "<group>"; };
 		7B31B7812EAE1C1F006689CE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7B31B7AE2EAE2916006689CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B31B8822EAF7C15006689CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7BA355CD2EAE188D00A922FC /* AssessmentTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssessmentTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,6 +63,7 @@
 		7BA355C42EAE188D00A922FC = {
 			isa = PBXGroup;
 			children = (
+				7B31B8812EAF7C15006689CE /* Localizable.strings */,
 				7B31B7AE2EAE2916006689CE /* Assets.xcassets */,
 				7B31B7812EAE1C1F006689CE /* .swiftlint.yml */,
 				7BA355CF2EAE188D00A922FC /* AssessmentTask */,
@@ -143,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B31B8832EAF7C15006689CE /* Localizable.strings in Resources */,
 				7B31B7AF2EAE2916006689CE /* Assets.xcassets in Resources */,
 				7B31B7822EAE1C2F006689CE /* .swiftlint.yml in Resources */,
 			);
@@ -220,6 +224,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7B31B8812EAF7C15006689CE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B31B8822EAF7C15006689CE /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7BA355DA2EAE188E00A922FC /* Debug */ = {

@@ -7,9 +7,9 @@
 
 import Foundation
 
-public final class LoginModel: ObservableObject {
+public final class LoginModel: ObservableObject, LoginModelStateProtocol {
     
-    @Published public var state = LoginState()
+    @Published public var state: LoginState = LoginState()
     public var store = LoginStore()
     var externalData: LoginModelExternalData?
     
@@ -18,4 +18,34 @@ public final class LoginModel: ObservableObject {
     }
 }
 
-extension LoginModel: LoginModelProtocol {}
+extension LoginModel: LoginModelProtocol {
+    
+    public func handleSuccessfulResponse(games: [APIResponseGames], headlines: [APIResponseHeadlines]) {
+        handleSuccessfulGamesResponse(games)
+        handleSuccessfulHeadlinesResponse(headlines)
+    }
+    
+    private func handleSuccessfulGamesResponse(_ games: [APIResponseGames]) {
+        state.content.games = games.flatMap { game in
+            game.betViews?.flatMap { betView in
+                betView.competitions?.flatMap { competition in
+                    competition.events?.compactMap { event in
+                        guard let captions = event.additionalCaptions, let c1 = captions.competitor1, let c2 = captions.competitor2
+                        else {return nil}
+                        return GamesModel(competitor1: c1, competitor2: c2)
+                    } ?? []
+                } ?? []
+            } ?? []
+        }
+    }
+    
+    private func handleSuccessfulHeadlinesResponse(_ headlines: [APIResponseHeadlines]) {
+        state.content.headlines = headlines.flatMap { headline in
+            headline.betViews.compactMap { betView in
+                guard let startTime = betView.startTime, let c1 = betView.competitor1Caption, let c2 = betView.competitor2Caption
+                else {return nil}
+                return HeadlinesModel(competitor1Caption: c1, competitor2Caption: c2, startTime: startTime)
+            }
+        }
+    }
+}

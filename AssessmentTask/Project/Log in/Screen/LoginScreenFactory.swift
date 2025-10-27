@@ -18,7 +18,7 @@ class LoginScreenFactory {
     func make() -> LoginScreen {
         let model = LoginModel(externalData: self.data)
         let intent = LoginIntent(model: model, service: LoginService())
-        let container = Container(intent: intent as LoginIntentProtocol, model: model as LoginModelProtocol)
+        let container = Container(intent: intent as LoginIntentProtocol, model: model as LoginModelStateProtocol, modelChangePublisher: model.objectWillChange)
         let view = LoginScreen(container: container)
         return view
     }

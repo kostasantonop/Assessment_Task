@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  AssessmentTask
+
+  Created by k.a.antonopoulos on 27/10/25.
+  
+*/
+
+"AppTitle" = "Assessment Task";
+"CTA_Button" = "Tap to load info";
