@@ -26,4 +26,17 @@ class LoginService: LoginServiceProtocol {
     private func getHeadlines() -> Promise<[APIResponseHeadlines]> {
         APIRouter.shared.request(urlString: UrlFactory.headlines.url())
     }
+    
+    func updateGamesAndHeadlines() -> Promise<([APIResponseGames], [APIResponseHeadlines])> {
+        return when(fulfilled: updateGames(), updateHeadlines())
+            .map { games, headlines in (games, headlines) }
+    }
+    
+    func updateGames() -> Promise<[APIResponseGames]> {
+        APIRouter.shared.request(urlString: UrlFactory.updatedGames.url(useUpdate: true))
+    }
+    
+    func updateHeadlines() -> Promise<[APIResponseHeadlines]> {
+        APIRouter.shared.request(urlString: UrlFactory.updatedHeadlines.url(useUpdate: true))
+    }
 }

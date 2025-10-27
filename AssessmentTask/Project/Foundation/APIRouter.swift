@@ -23,7 +23,7 @@ enum UrlFactory: String {
     case updatedHeadlines = "updatedheadlines"
     
     private static let mainPrefix = "https://raw.githubusercontent.com/kfiliosNovibet/NoviTest/refs/heads/main/"
-    private static let updatePrefix = "https://example.com/otherpath/"
+    private static let updatePrefix = "https://raw.githubusercontent.com/kfiliosNovibet/NoviTest/refs/heads/main/"
     
     func url(useUpdate: Bool = false) -> String {
         let prefix = useUpdate ? UrlFactory.updatePrefix : UrlFactory.mainPrefix
