@@ -1,5 +1,5 @@
 //
-//  StringExtensions.swift
+//  Extensions.swift
 //  AssessmentTask
 //
 //  Created by k.a.antonopoulos on 27/10/25.

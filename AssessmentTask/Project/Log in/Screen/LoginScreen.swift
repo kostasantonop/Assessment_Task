@@ -57,7 +57,7 @@ struct LoginScreen: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .bottom, spacing: 16) {
                 ForEach(container.model.state.content.headlines ?? []) { headline in
-                    HeadlineCell(model: HeadlineCellModel(competitor1: headline.competitor1Caption, competitor2: headline.competitor2Caption, startTime: headline.startTime))
+                    HeadlineCell(model: HeadlineCellModel(competitor1: headline.competitor1Caption, competitor2: headline.competitor2Caption, startTime: headline.startTime, betItems: headline.betItems))
                 }
             }
         }

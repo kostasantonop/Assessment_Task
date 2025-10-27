@@ -44,7 +44,14 @@ extension LoginModel: LoginModelProtocol {
             headline.betViews.compactMap { betView in
                 guard let startTime = betView.startTime, let c1 = betView.competitor1Caption, let c2 = betView.competitor2Caption
                 else {return nil}
-                return HeadlinesModel(competitor1Caption: c1, competitor2Caption: c2, startTime: startTime)
+                let betItems: [(String, String)] = betView.betItems?.compactMap { betItem in
+                    if let code = betItem.code,
+                       let price = betItem.price {
+                        return (code, String(price))
+                    }
+                    return nil
+                } ?? []
+                return HeadlinesModel(competitor1Caption: c1, competitor2Caption: c2, startTime: startTime, betItems: betItems)
             }
         }
     }

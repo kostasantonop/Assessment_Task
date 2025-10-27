@@ -12,6 +12,7 @@ struct HeadlineCellModel {
     let competitor1: String
     let competitor2: String
     let startTime: String
+    let betItems: [(String, String)]
 }
 
 struct HeadlineCell: View {
@@ -19,18 +20,56 @@ struct HeadlineCell: View {
     let model: HeadlineCellModel
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: 0) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(model.competitor1)
-                    .font(.headline)
-                Text(model.competitor2)
-                    .font(.headline)
-            }
-            
-            Spacer(minLength: 24)
-            
-            Text(model.startTime)
-                .font(.headline)
+        VStack(alignment: .center, spacing: 8) {
+            contentView
+            betItemsView
         }
     }
+        
+    private var contentView: some View {
+        HStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .leading, spacing: 16) {
+                HeadlineText(text: model.competitor1)
+                HeadlineText(text: model.competitor2)
+            }
+            
+            Spacer(minLength: 140)
+            
+            HeadlineText(text: model.startTime)
+        }
+        .padding(16)
+        .background(.black)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
+    }
+    
+    private var betItemsView: some View {
+        HStack(alignment: .center, spacing: 8) {
+            ForEach(model.betItems, id: \.0) { code, price in
+                HStack(spacing: 32) {
+                    Text(code)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                    
+                    Text(price)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                }
+                .padding(8)
+                .background(.white)
+                .cornerRadius(4)
+            }
+        }
+    }
+
 }
+
+struct HeadlineText: View {
+    let text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.headline)
+            .foregroundColor(.white)
+    }
+}
+

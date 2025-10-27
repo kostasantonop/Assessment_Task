@@ -12,4 +12,5 @@ public struct HeadlinesModel: Identifiable {
     public let competitor1Caption: String
     public let competitor2Caption: String
     public let startTime: String
+    public let betItems: [(String, String)]
 }
