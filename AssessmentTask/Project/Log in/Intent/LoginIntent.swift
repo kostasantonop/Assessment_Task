@@ -37,6 +37,14 @@ extension LoginIntent: LoginIntentProtocol {
         }
     }
     
+    public func updateGamesAndHeadlines() {
+        service?.updateGamesAndHeadlines().done { games, headlines in
+            self.model?.handleSuccessfulResponse(games: games, headlines: headlines)
+        }.catch { error in
+            self.log(error)
+        }
+    }
+    
     private func log(_ error: Error) {
         if let error = error as NSError? {
             print("Error: \(error.domain) with error code: \(error.code)")

@@ -11,11 +11,13 @@ import SwiftUI
 struct LoginScreen: View {
     @ObservedObject var container: Container<LoginIntentProtocol, LoginModelStateProtocol>
     @State var buttonTapped: Bool = false
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         contentView
             .frame(maxWidth: .infinity)
             .background(.green)
+        
     }
     
     private var contentView: some View {
@@ -39,6 +41,7 @@ struct LoginScreen: View {
             Button(action: {
                 buttonTapped = true
                 container.intent.getGamesAndHeadlines()
+                startRepeatingUpdates()
             }, label: {
                 Text("CTA_Button".localized)
                     .padding(48)
@@ -72,4 +75,16 @@ struct LoginScreen: View {
             }
         }
     }
+    
+    private func startRepeatingUpdates() {
+            Task {
+                while true {
+                    try? await Task.sleep(nanoseconds: 10 * 1_000_000_000)
+                    await MainActor.run {
+                        print("Updating....")
+                        container.intent.updateGamesAndHeadlines()
+                    }
+                }
+            }
+        }
 }

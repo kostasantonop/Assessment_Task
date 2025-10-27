@@ -10,4 +10,5 @@ import Foundation
 public protocol LoginIntentProtocol {
     func getAuthToken()
     func getGamesAndHeadlines()
+    func updateGamesAndHeadlines()
 }
