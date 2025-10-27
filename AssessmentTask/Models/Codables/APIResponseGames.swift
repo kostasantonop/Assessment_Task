@@ -8,7 +8,6 @@
 import Foundation
 
 public struct APIResponseGames: Codable {
-    public let caption: String?
     public let betViews: [APIResponseBetViews]?
 }
  

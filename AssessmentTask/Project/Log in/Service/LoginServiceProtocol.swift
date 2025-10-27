@@ -10,5 +10,4 @@ import PromiseKit
 
 public protocol LoginServiceProtocol {
     func getAuthToken() -> Promise<APIResponseToken>
-    func getGames() -> Promise<[APIResponseGames]>
-}
+    func getGamesAndHeadlines() -> Promise<([APIResponseGames], [APIResponseHeadlines])>}
