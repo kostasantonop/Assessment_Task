@@ -11,3 +11,8 @@ public struct LoginStateContent {
     public var games: [GamesModel]?
     public var headlines: [HeadlinesModel]?
 }
+
+public enum StateVariant: Equatable {
+    case withButton
+    case withData
+}

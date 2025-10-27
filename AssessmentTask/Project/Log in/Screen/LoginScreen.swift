@@ -10,22 +10,42 @@ import SwiftUI
 
 struct LoginScreen: View {
     @ObservedObject var container: Container<LoginIntentProtocol, LoginModelStateProtocol>
-    @State var buttonTapped: Bool = false
-    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
-        contentView
-            .frame(maxWidth: .infinity)
-            .background(.green)
+        VStack(alignment: .center, spacing: 32) {
+            Text("AppTitle".localized)
+                .font(.title.bold())
+                .padding(.top, 32)
+                .onAppear { container.intent.getAuthToken() }
+            
+            contentView
+        }
+        .background(.green)
+    }
+    
+    @ViewBuilder
+    private var contentView: some View {
+        let variant = container.model.state.stateVariant
+        switch variant {
+        case .withButton:
+            contentButtonView
+                .frame(maxWidth: .infinity)
+        case .withData:
+            contentDataView
+        }
+    }
+    
+    private var contentButtonView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Spacer(minLength: 0)
+            buttonView
+            Spacer(minLength: 0)
+        }
         
     }
     
-    private var contentView: some View {
+    private var contentDataView: some View {
         VStack(alignment: .center, spacing: 32) {
-            Text("AppTitle".localized)
-                .font(.title)
-                .onAppear { container.intent.getAuthToken() }
-            buttonView
             headlineView
                 .padding(.leading, 20)
             gamesView
@@ -37,29 +57,21 @@ struct LoginScreen: View {
     
     @ViewBuilder
     private var buttonView: some View {
-        if !buttonTapped {
-            Button(action: {
-                buttonTapped = true
-                container.intent.getGamesAndHeadlines()
-                startRepeatingUpdates()
-            }, label: {
-                Text("CTA_Button".localized)
-                    .padding(48)
-                    .background(Color.black)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            })
-        }
+        Button(action: {
+            container.intent.getGamesAndHeadlines()
+            startRepeatingUpdates()
+        }, label: {
+            Text("CTA_Button".localized)
+                .padding(48)
+                .background(Color.black)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+        })
     }
     
-    //TODO: Implement snap carousel
     private var headlineView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .bottom, spacing: 16) {
-                ForEach(container.model.state.content.headlines ?? []) { headline in
-                    HeadlineCell(model: HeadlineCellModel(competitor1: headline.competitor1Caption, competitor2: headline.competitor2Caption, startTime: headline.startTime, betItems: headline.betItems))
-                }
-            }
+        CarouselView(model: CarouselModel(time: 5), items: container.model.state.content.headlines ?? []) { headline in
+            HeadlineCell(model: HeadlineCellModel(competitor1: headline.competitor1Caption, competitor2: headline.competitor2Caption, startTime: headline.startTime, betItems: headline.betItems))
         }
     }
     
@@ -77,14 +89,14 @@ struct LoginScreen: View {
     }
     
     private func startRepeatingUpdates() {
-            Task {
-                while true {
-                    try? await Task.sleep(nanoseconds: 10 * 1_000_000_000)
-                    await MainActor.run {
-                        print("Updating....")
-                        container.intent.updateGamesAndHeadlines()
-                    }
+        Task {
+            while true {
+                try? await Task.sleep(nanoseconds: 10 * 1_000_000_000)
+                await MainActor.run {
+                    print("Updating....")
+                    container.intent.updateGamesAndHeadlines()
                 }
             }
         }
+    }
 }
