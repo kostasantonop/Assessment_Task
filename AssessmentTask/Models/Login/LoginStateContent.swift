@@ -7,4 +7,7 @@
 
 import Foundation
 
-public struct LoginStateContent {}
+public struct LoginStateContent {
+    public var games: [GamesModel]?
+    public var headlines: [APIResponseHeadlines]?
+}

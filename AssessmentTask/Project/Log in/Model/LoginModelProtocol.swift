@@ -20,10 +20,10 @@ public struct LoginStore {
     public var tokenType: String?
 }
 
-// sourcery: AutoMockable
-public protocol EverydayInvestIntroModelStatePotocol {
+public protocol LoginModelStateProtocol {
     var state: LoginState { get }
 }
 
-// sourcery: AutoMockable
-public protocol LoginModelProtocol: AnyObject {}
+public protocol LoginModelProtocol: AnyObject {
+    func handleSuccessfulResponse(games: [APIResponseGames], headlines: [APIResponseHeadlines])
+}

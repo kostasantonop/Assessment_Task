@@ -31,7 +31,7 @@ extension LoginIntent: LoginIntentProtocol {
     
     public func getGamesAndHeadlines() {
         service?.getGamesAndHeadlines().done { games, headlines in
-            print(headlines)
+            self.model?.handleSuccessfulResponse(games: games, headlines: headlines)
         }.catch { error in
             self.log(error)
         }
