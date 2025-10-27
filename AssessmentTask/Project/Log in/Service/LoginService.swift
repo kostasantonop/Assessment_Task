@@ -13,4 +13,8 @@ class LoginService: LoginServiceProtocol {
     func getAuthToken() -> Promise<APIResponseToken> {
         APIRouter.shared.request(urlString: UrlFactory.token.urlString)
     }
+    
+    func getGames() -> Promise<[APIResponseGames]> {
+        APIRouter.shared.request(urlString: UrlFactory.games.urlString)
+    }
 }
