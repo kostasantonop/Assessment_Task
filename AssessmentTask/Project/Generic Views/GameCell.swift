@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct GameCellModel {
-    var competitor1: String?
-    var competitor2: String?
+    var competitor1: String
+    var competitor2: String
 }
 
 struct GameCell: View {
@@ -19,10 +19,10 @@ struct GameCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(model.competitor1 ?? "-")
-                .font(.headline)
-            Text(model.competitor2 ?? "-")
-                .font(.headline)
+            Text(model.competitor1)
+                .font(.subheadline)
+            Text(model.competitor2)
+                .font(.subheadline)
             Divider()
         }
     }

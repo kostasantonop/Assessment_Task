@@ -22,6 +22,7 @@ extension LoginModel: LoginModelProtocol {
     
     public func handleSuccessfulResponse(games: [APIResponseGames], headlines: [APIResponseHeadlines]) {
         handleSuccessfulGamesResponse(games)
+        handleSuccessfulHeadlinesResponse(headlines)
     }
     
     private func handleSuccessfulGamesResponse(_ games: [APIResponseGames]) {
@@ -35,6 +36,16 @@ extension LoginModel: LoginModelProtocol {
                     } ?? []
                 } ?? []
             } ?? []
+        }
+    }
+    
+    private func handleSuccessfulHeadlinesResponse(_ headlines: [APIResponseHeadlines]) {
+        state.content.headlines = headlines.flatMap { headline in
+            headline.betViews.compactMap { betView in
+                guard let startTime = betView.startTime, let c1 = betView.competitor1Caption, let c2 = betView.competitor2Caption
+                else {return nil}
+                return HeadlinesModel(competitor1Caption: c1, competitor2Caption: c2, startTime: startTime)
+            }
         }
     }
 }
