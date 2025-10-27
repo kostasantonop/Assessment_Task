@@ -72,4 +72,3 @@ struct HeadlineText: View {
             .foregroundColor(.white)
     }
 }
-
