@@ -29,9 +29,9 @@ extension LoginIntent: LoginIntentProtocol {
         }
     }
     
-    public func getGames() {
-        service?.getGames().done { response in
-            print(response)
+    public func getGamesAndHeadlines() {
+        service?.getGamesAndHeadlines().done { games, headlines in
+            print(headlines)
         }.catch { error in
             self.log(error)
         }
