@@ -10,10 +10,10 @@ import PromiseKit
 
 public class LoginIntent {
     
-    private var model: LoginModel?
+    private var model: LoginModelProtocol?
     private var service: LoginServiceProtocol?
     
-    public init(model: LoginModel, service: LoginServiceProtocol) {
+    public init(model: LoginModelProtocol, service: LoginServiceProtocol) {
         self.model = model
         self.service = service
     }

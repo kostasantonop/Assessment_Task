@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct LoginScreen: View {
-    @ObservedObject var container: Container<LoginIntent, LoginModel>
+    @ObservedObject var container: Container<LoginIntentProtocol, LoginModelProtocol>
     
     var body: some View {
         VStack {
