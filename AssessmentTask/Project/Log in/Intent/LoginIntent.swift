@@ -22,24 +22,33 @@ public class LoginIntent {
 extension LoginIntent: LoginIntentProtocol {
     
     public func getAuthToken() {
+        LoaderManager.shared.show()
         service?.getAuthToken().done { response in
             APIRouter.shared.defaultHeaders["Auth"] = "\(response.token_type) \(response.access_token)"
+        }.ensure {
+            LoaderManager.shared.hide()
         }.catch { error in
             self.log(error)
         }
     }
     
     public func getGamesAndHeadlines() {
+        LoaderManager.shared.show()
         service?.getGamesAndHeadlines().done { games, headlines in
             self.model?.handleSuccessfulResponse(games: games, headlines: headlines)
+        }.ensure {
+            LoaderManager.shared.hide()
         }.catch { error in
             self.log(error)
         }
     }
     
     public func updateGamesAndHeadlines() {
+        LoaderManager.shared.show()
         service?.updateGamesAndHeadlines().done { games, headlines in
             self.model?.handleSuccessfulResponse(games: games, headlines: headlines)
+        }.ensure {
+            LoaderManager.shared.hide()
         }.catch { error in
             self.log(error)
         }

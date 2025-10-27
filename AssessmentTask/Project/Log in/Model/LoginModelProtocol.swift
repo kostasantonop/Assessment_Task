@@ -11,7 +11,6 @@ public struct LoginState {
     
     public var content: LoginStateContent = LoginStateContent()
     public var stateVariant: StateVariant = .withButton
-    //TODO: Implement loading
     public init() {}
 }
 
