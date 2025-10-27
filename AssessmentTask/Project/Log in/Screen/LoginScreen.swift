@@ -10,20 +10,42 @@ import SwiftUI
 
 struct LoginScreen: View {
     @ObservedObject var container: Container<LoginIntentProtocol, LoginModelStateProtocol>
-    @State var buttonTapped: Bool = false
     
     var body: some View {
-        contentView
-            .background(.green)
-    }
-    
-    private var contentView: some View {
         VStack(alignment: .center, spacing: 32) {
             Text("AppTitle".localized)
                 .font(.title.bold())
-                .padding(.top, 16)
+                .padding(.top, 32)
                 .onAppear { container.intent.getAuthToken() }
+            
+            contentView
+        }
+        .background(.green)
+    }
+    
+    @ViewBuilder
+    private var contentView: some View {
+        let variant = container.model.state.stateVariant
+        switch variant {
+        case .withButton:
+            contentButtonView
+                .frame(maxWidth: .infinity)
+        case .withData:
+            contentDataView
+        }
+    }
+    
+    private var contentButtonView: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Spacer(minLength: 0)
             buttonView
+            Spacer(minLength: 0)
+        }
+        
+    }
+    
+    private var contentDataView: some View {
+        VStack(alignment: .center, spacing: 32) {
             headlineView
                 .padding(.leading, 20)
             gamesView
@@ -35,19 +57,16 @@ struct LoginScreen: View {
     
     @ViewBuilder
     private var buttonView: some View {
-        if !buttonTapped {
-            Button(action: {
-                buttonTapped = true
-                container.intent.getGamesAndHeadlines()
-                startRepeatingUpdates()
-            }, label: {
-                Text("CTA_Button".localized)
-                    .padding(48)
-                    .background(Color.black)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            })
-        }
+        Button(action: {
+            container.intent.getGamesAndHeadlines()
+            startRepeatingUpdates()
+        }, label: {
+            Text("CTA_Button".localized)
+                .padding(48)
+                .background(Color.black)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+        })
     }
     
     private var headlineView: some View {

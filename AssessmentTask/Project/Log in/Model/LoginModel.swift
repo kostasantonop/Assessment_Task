@@ -21,6 +21,7 @@ public final class LoginModel: ObservableObject, LoginModelStateProtocol {
 extension LoginModel: LoginModelProtocol {
     
     public func handleSuccessfulResponse(games: [APIResponseGames], headlines: [APIResponseHeadlines]) {
+        state.stateVariant = .withData
         handleSuccessfulGamesResponse(games)
         handleSuccessfulHeadlinesResponse(headlines)
     }
