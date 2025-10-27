@@ -70,7 +70,7 @@ struct LoginScreen: View {
     }
     
     private var headlineView: some View {
-        CarouselView(items: container.model.state.content.headlines ?? []) { headline in
+        CarouselView(model: CarouselModel(time: 5), items: container.model.state.content.headlines ?? []) { headline in
             HeadlineCell(model: HeadlineCellModel(competitor1: headline.competitor1Caption, competitor2: headline.competitor2Caption, startTime: headline.startTime, betItems: headline.betItems))
         }
     }
@@ -89,14 +89,14 @@ struct LoginScreen: View {
     }
     
     private func startRepeatingUpdates() {
-            Task {
-                while true {
-                    try? await Task.sleep(nanoseconds: 10 * 1_000_000_000)
-                    await MainActor.run {
-                        print("Updating....")
-                        container.intent.updateGamesAndHeadlines()
-                    }
+        Task {
+            while true {
+                try? await Task.sleep(nanoseconds: 10 * 1_000_000_000)
+                await MainActor.run {
+                    print("Updating....")
+                    container.intent.updateGamesAndHeadlines()
                 }
             }
         }
+    }
 }

@@ -8,7 +8,12 @@
 import Foundation
 import SwiftUI
 
+struct CarouselModel {
+    var time: Double? = nil
+}
+
 struct CarouselView<Content: View, T: Identifiable>: View {
+    var model: CarouselModel
     var items: [T]
     var content: (T) -> Content
     @State private var currentIndex: Int = 0
@@ -27,6 +32,11 @@ struct CarouselView<Content: View, T: Identifiable>: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(height: 150)
         }
+        .onAppear {
+            if let time = model.time {
+                startTimer(with: time)
+            }
+        }
     }
     
     private var indexDisplayView: some View {
@@ -37,6 +47,14 @@ struct CarouselView<Content: View, T: Identifiable>: View {
                     .frame(width: 8, height: 8)
                     .animation(.easeInOut(duration: 0.2), value: currentIndex)
             }
+        }
+    }
+    
+    private func startTimer(with time: Double) {
+        guard let time = model.time else { return }
+        
+        Timer.scheduledTimer(withTimeInterval: time, repeats: true) { _ in
+            currentIndex = (currentIndex + 1) % items.count
         }
     }
 }
