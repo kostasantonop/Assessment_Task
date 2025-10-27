@@ -11,7 +11,7 @@ import PromiseKit
 class LoginService: LoginServiceProtocol {
     
     func getAuthToken() -> Promise<APIResponseToken> {
-        APIRouter.shared.request(urlString: UrlFactory.token.urlString)
+        APIRouter.shared.request(urlString: UrlFactory.token.url())
     }
     
     func getGamesAndHeadlines() -> Promise<([APIResponseGames], [APIResponseHeadlines])> {
@@ -20,10 +20,10 @@ class LoginService: LoginServiceProtocol {
     }
     
     private func getGames() -> Promise<[APIResponseGames]> {
-        APIRouter.shared.request(urlString: UrlFactory.games.urlString)
+        APIRouter.shared.request(urlString: UrlFactory.games.url())
     }
     
     private func getHeadlines() -> Promise<[APIResponseHeadlines]> {
-        APIRouter.shared.request(urlString: UrlFactory.headlines.urlString)
+        APIRouter.shared.request(urlString: UrlFactory.headlines.url())
     }
 }

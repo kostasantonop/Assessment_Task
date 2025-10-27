@@ -16,17 +16,18 @@ enum APIRequestType: String {
 }
 
 enum UrlFactory: String {
-    
-    static let urlPrefix = "https://raw.githubusercontent.com/kfiliosNovibet/NoviTest/refs/heads/main/"
-    
     case token = "token"
     case games = "livegames"
     case headlines = "headlines"
     case updatedGames = "updatedlivegames"
     case updatedHeadlines = "updatedheadlines"
     
-    var urlString: String {
-        return UrlFactory.urlPrefix + self.rawValue
+    private static let mainPrefix = "https://raw.githubusercontent.com/kfiliosNovibet/NoviTest/refs/heads/main/"
+    private static let updatePrefix = "https://example.com/otherpath/"
+    
+    func url(useUpdate: Bool = false) -> String {
+        let prefix = useUpdate ? UrlFactory.updatePrefix : UrlFactory.mainPrefix
+        return prefix + self.rawValue
     }
 }
 
