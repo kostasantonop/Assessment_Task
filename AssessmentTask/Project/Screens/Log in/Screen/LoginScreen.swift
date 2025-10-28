@@ -15,12 +15,17 @@ struct LoginScreen: View {
         VStack(alignment: .center, spacing: 32) {
             Text("AppTitle".localized)
                 .font(.title.bold())
+                .foregroundColor(Color("CharcoalBlack"))
                 .padding(.top, 32)
                 .onAppear { container.intent.getAuthToken() }
             
             contentView
         }
-        .background(.green)
+        .background(LinearGradient(
+            gradient: Gradient(colors: [Color("PitchLight"), Color("FieldGreen")]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        ))
     }
     
     @ViewBuilder
@@ -48,7 +53,7 @@ struct LoginScreen: View {
         VStack(alignment: .center, spacing: 32) {
             headlineView
             gamesView
-                .background(.white)
+                .background(Color("CharcoalBlack"))
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
                 .padding(.horizontal, 20)
         }
@@ -62,8 +67,8 @@ struct LoginScreen: View {
         }, label: {
             Text("CTA_button".localized)
                 .padding(48)
-                .background(Color.black)
-                .foregroundColor(.white)
+                .background(Color("CharcoalBlack"))
+                .foregroundColor(Color("GoldRay"))
                 .cornerRadius(8)
         })
     }
@@ -74,7 +79,6 @@ struct LoginScreen: View {
         }
     }
     
-    //TODO: Fix scrolling view issue
     private var gamesView: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {

@@ -38,7 +38,11 @@ struct HeadlineCell: View {
             HeadlineText(text: model.startTime)
         }
         .padding(16)
-        .background(.black)
+        .background(LinearGradient(
+            gradient: Gradient(colors: [Color("CharcoalBlack"), Color("GoldRay")]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        ))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
     }
     
@@ -48,14 +52,14 @@ struct HeadlineCell: View {
                 HStack(spacing: 32) {
                     Text(code)
                         .font(.caption)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("BlackGold"))
                     
                     Text(price)
                         .font(.caption)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("BlackGold"))
                 }
                 .padding(8)
-                .background(.white)
+                .background(Color("SnowWhite"))
                 .cornerRadius(4)
             }
         }
