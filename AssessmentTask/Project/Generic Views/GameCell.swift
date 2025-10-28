@@ -33,6 +33,7 @@ struct GameCell: View {
                 timeElapsedView
             }
             Divider()
+                .background(.white)
         }
         .onAppear {
             if let time = model.time {
@@ -45,8 +46,10 @@ struct GameCell: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(model.competitor1)
                 .font(.subheadline)
+                .foregroundColor(Color("GoldRay"))
             Text(model.competitor2)
                 .font(.subheadline)
+                .foregroundColor(Color("GoldRay"))
         }
     }
     
@@ -54,8 +57,10 @@ struct GameCell: View {
         VStack(alignment: .center, spacing: 4) {
             Text("games_time_label".localized)
                 .font(.caption.bold())
+                .foregroundColor(Color("GoldRay"))
             Text(elapsed)
                 .font(.caption)
+                .foregroundColor(Color("GoldRay"))
         }
     }
     
