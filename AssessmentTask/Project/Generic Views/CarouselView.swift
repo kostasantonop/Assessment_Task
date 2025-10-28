@@ -43,7 +43,7 @@ struct CarouselView<Content: View, T: Identifiable>: View {
         HStack(spacing: 8) {
             ForEach(items.indices, id: \.self) { index in
                 Circle()
-                    .fill(index == currentIndex ? Color.blue : Color.gray)
+                    .fill(index == currentIndex ? Color("CharcoalBlack"): Color.gray)
                     .frame(width: 8, height: 8)
                     .animation(.easeInOut(duration: 0.2), value: currentIndex)
             }
