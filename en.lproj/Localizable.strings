@@ -11,4 +11,6 @@
 "games_time_label" = "Time elapsed";
 
 //MARK: Errors
+"invalid_url" = "This url is invalid";
+"no_data_returned" = "No data returned by API call";
 "invalid_time_elapsed" = "An error has occured";

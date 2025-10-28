@@ -39,7 +39,7 @@ class APIRouter {
     func request<T: Codable>(urlString: String, params: [String: String]? = nil, method: APIRequestType = .get) -> Promise<T> {
         return Promise { resolver in
             guard let url = URL(string: urlString) else {
-                resolver.reject(NSError(domain: "Invalid URL", code: 400))
+                resolver.reject(NSError(domain: "invalid_url".localized, code: 400))
                 return
             }
             print("🛜 Method: \(method.rawValue)")
@@ -54,7 +54,7 @@ class APIRouter {
             URLSession.shared.dataTask(with: request) { data, _, error in
                 if let error = error { resolver.reject(error); return }
                 guard let data = data else {
-                    resolver.reject(NSError(domain: "No data returned", code: 0))
+                    resolver.reject(NSError(domain: "no_data_returned".localized, code: 0))
                     return
                 }
 
