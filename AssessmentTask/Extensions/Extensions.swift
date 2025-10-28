@@ -22,9 +22,9 @@ extension String {
         return hours * 3600 + minutes * 60 + seconds
     }
     
-    func deducted(by seconds: TimeInterval = 1) -> String {
+    func increment(by seconds: TimeInterval = 1) -> String {
         guard let interval = self.timeInterval else { return "invalid_time_elapsed".localized }
-        let newInterval = interval - seconds
+        let newInterval = interval + seconds
         return newInterval.display()
     }
 }

@@ -26,12 +26,11 @@ struct GameCell: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .center, spacing: 0) {
                 contentView
                 Spacer(minLength: 24)
-                Text(elapsed)
-                    .font(.caption)
+                timeElapsedView
             }
             Divider()
         }
@@ -51,9 +50,18 @@ struct GameCell: View {
         }
     }
     
+    private var timeElapsedView: some View {
+        VStack(alignment: .center, spacing: 4) {
+            Text("games_time_label".localized)
+                .font(.caption.bold())
+            Text(elapsed)
+                .font(.caption)
+        }
+    }
+    
     private func startTimer(with time: Double) {
             Timer.scheduledTimer(withTimeInterval: time, repeats: true) { _ in
-                let newElapsed = elapsed.deducted(by: time)
+                let newElapsed = elapsed.increment(by: time)
                 DispatchQueue.main.async {
                     elapsed = newElapsed
                 }

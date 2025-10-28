@@ -8,4 +8,7 @@
 
 "AppTitle" = "Assessment Task";
 "CTA_button" = "Tap to load info";
+"games_time_label" = "Time elapsed";
+
+//MARK: Errors
 "invalid_time_elapsed" = "An error has occured";
