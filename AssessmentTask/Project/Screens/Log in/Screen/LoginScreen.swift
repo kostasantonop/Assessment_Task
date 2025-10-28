@@ -61,7 +61,7 @@ struct LoginScreen: View {
             container.intent.getGamesAndHeadlines()
             startRepeatingUpdates()
         }, label: {
-            Text("CTA_Button".localized)
+            Text("CTA_button".localized)
                 .padding(48)
                 .background(Color.black)
                 .foregroundColor(.white)
@@ -80,7 +80,7 @@ struct LoginScreen: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(container.model.state.content.games ?? []) { game in
-                    GameCell( model: GameCellModel(competitor1: game.competitor1, competitor2: game.competitor2))
+                    GameCell(model: GameCellModel(competitor1: game.competitor1, competitor2: game.competitor2, elapsed: game.elapsed.timeInterval?.display() ?? "invalid_time_elapsed".localized, time: 1))
                         .padding(8)
                         .padding(.bottom, 8)
                 }

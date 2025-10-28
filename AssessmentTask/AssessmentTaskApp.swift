@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct AssessmentTaskApp: App {
+    //TODO: Look into and solve memory leak
     var body: some Scene {
         WindowGroup {
             ZStack {

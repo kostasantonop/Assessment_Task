@@ -28,9 +28,9 @@ extension LoginModel: LoginModelProtocol {
             game.betViews?.flatMap { betView in
                 betView.competitions?.flatMap { competition in
                     competition.events?.compactMap { event in
-                        guard let captions = event.additionalCaptions, let c1 = captions.competitor1, let c2 = captions.competitor2
+                        guard let captions = event.additionalCaptions, let c1 = captions.competitor1, let c2 = captions.competitor2, let elapsed = event.liveData?.elapsed
                         else {return nil}
-                        return GamesModel(competitor1: c1, competitor2: c2)
+                        return GamesModel(competitor1: c1, competitor2: c2, elapsed: elapsed)
                     } ?? []
                 } ?? []
             } ?? []

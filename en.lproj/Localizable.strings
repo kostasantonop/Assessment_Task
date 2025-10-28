@@ -7,4 +7,5 @@
 */
 
 "AppTitle" = "Assessment Task";
-"CTA_Button" = "Tap to load info";
+"CTA_button" = "Tap to load info";
+"invalid_time_elapsed" = "An error has occured";

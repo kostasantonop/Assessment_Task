@@ -11,4 +11,5 @@ public struct GamesModel: Identifiable {
     public let id = UUID()
     public let competitor1: String
     public let competitor2: String
+    public let elapsed: String
 }
