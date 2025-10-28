@@ -47,7 +47,6 @@ struct LoginScreen: View {
     private var contentDataView: some View {
         VStack(alignment: .center, spacing: 32) {
             headlineView
-                .padding(.leading, 20)
             gamesView
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
